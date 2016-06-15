@@ -50,5 +50,8 @@ describe('ClinicItem' , () => {
     expect(component.find('#address')).to.have.html(props.clinic.address + ' ' + props.clinic.ward + ' ' + props.clinic.suburbDistrict + ' ' + props.clinic.stateProvince);
   });
 
+  it('shows link to "Show on map" on page',() => {    
+    expect(component.find('.fa-map-marker ')).to.have.html(' Show on map');
+  });
 
 });

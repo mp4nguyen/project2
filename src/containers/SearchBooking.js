@@ -5,6 +5,7 @@ import * as actions from '../redux/actions';
 
 import SelectPractitioner from '../Components/SelectPractitioner';
 
+
 class SearchBooking extends Component{
 
 	static contextTypes = {
@@ -52,29 +53,29 @@ class SearchBooking extends Component{
 		return (
 	<section id="home" className="divider parallax" 
     	style={{'backgroundImage':'url(images/bg/bg3.jpg)', width:'100%', height: '700px'}}    	
-    	>
-      <div className="display-table">
-        <div className="display-table-cell">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8 col-md-offset-4">              	                
-              	<div className="bg-theme-colored p-25">
-                  <h3 className="m-0 mb-30"><span className="text-white">Make an Appointment</span> </h3>
-                  <form id="home_appointment_form" name="home_appointment_form" onSubmit={this.handleSubmit.bind(this)}>
-                  	<SelectPractitioner practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>		                   
-		              	<div className="input-group">
-			                <input id="form_name" name="form_name" className="form-control" type="text" required="" placeholder="Enter Name" aria-required="true"/>
-			                <span className="input-group-btn">
-			                    <button type="submit" className="btn btn-colored form-control  btn-theme-colored m-0"><i className="fa fa-search text-white"></i></button>
-			                </span>
-		              	</div>                    
-                  </form>        
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    	>    	    	
+		<div className="display-table">
+			<div className="display-table-cell">
+			  <div className="container">			  	
+			    <div className="row">
+			      <div className="col-md-8 col-md-offset-4">              	                
+			      	<div className="bg-theme-colored p-25">
+			          <h3 className="m-0 mb-30"><span className="text-white">Make an Appointment</span> </h3>
+			          <form id="home_appointment_form" name="home_appointment_form" onSubmit={this.handleSubmit.bind(this)}>
+			          	<SelectPractitioner practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>		                   
+			              	<div className="input-group">
+				                <input id="form_name" name="form_name" className="form-control" type="text" required="" placeholder="Enter Name" aria-required="true"/>
+				                <span className="input-group-btn">
+				                    <button type="submit" className="btn btn-colored form-control  btn-theme-colored m-0"><i className="fa fa-search text-white"></i></button>
+				                </span>
+			              	</div>                    
+			          </form>        
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
     </section>
 			)
 	}

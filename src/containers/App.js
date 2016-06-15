@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../redux/actions';
 
+
 class App extends Component {
 
   	constructor(props) {
@@ -34,7 +35,7 @@ class App extends Component {
 
 		return (
 <div id="wrapper" className="clearfix"> 
-  <header id="header" className="header">
+  <header id="header" className="header">            
     <div className="header-top bg-theme-colored sm-text-center">
       <div className="container">
         <div className="row">
@@ -118,9 +119,10 @@ class App extends Component {
     </div>
   </header>
   
-  <div className="main-content">    
+  <div className="main-content">        
     {this.props.children}  
   </div> 
+
 
   <footer id="footer" className="footer pb-0 bg-black-111">
     <div className="container pb-20">

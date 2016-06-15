@@ -15,7 +15,7 @@ const  About = () => {
 
 export default (
 	<Route path="/" component={App}>	
-		<IndexRoute component={SearchBooking}/>
+		<IndexRoute component={ClinicList}/>
 		<Route path="Clinics" component={ClinicList} />
 		<Route path="About" component={About} />
 		<Route path="greet2" component={Greeting} />

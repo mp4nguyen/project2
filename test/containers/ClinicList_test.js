@@ -28,4 +28,8 @@ describe('ClinicList' , () => {
     expect(component.find('.clinic-item').length).to.equal(2);
   });
 
+  it('has google map to display all current clinics',() => {
+    console.log(component.find('.all-clinics-on-map'));
+    expect(component.find('.all-clinics-on-map')).to.exist;
+  });
 });

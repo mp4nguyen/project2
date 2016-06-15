@@ -1,31 +1,49 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+var Scroll  = require('react-scroll'); 
+var Infinite = require('react-infinite');
+
+var Link       = Scroll.Link;
+var DirectLink = Scroll.DirectLink;
+var Element    = Scroll.Element;
+var Events     = Scroll.Events;
+var scroll     = Scroll.animateScroll;
+var scroller = Scroll.scroller;
+
 import * as actions from '../redux/actions';
 
 import ClinicItem from '../Components/ClinicItem';
+import AllClinicsOnMap from '../containers/AllClinicsOnMap';
 
 class ClinicList extends Component{
 
 	constructor(props,context){
 		super(props,context);
-		this.state = {
-			inputText : ''
-		};
 	}
 
-	handleChange(event){
-		console.log('change detected',event.target.value);
-		this.setState({
-			inputText: event.target.value
-		});
+	componentWillReceiveProps(nextProps) {
+/*		console.log('componentWillReceiveProps',this.props.currentClinic);
+		if(this.props.currentClinic.index){
+			scroller.scrollTo(this.props.currentClinic.index, {
+													  duration: 1500,
+													  delay: 100,
+													  smooth: true,
+													})			
+		}*/
+
 	}
 
-	handleSubmit(event){
-		event.preventDefault();
-		console.log('submit clicked');
-		this.props.actions.loadClinicsFromServer();
-		//this.props.addTodo(this.state.inputText);
+	componentWillUpdate(nextProps, nextState){
+	    // perform any preparations for an upcoming update
+	    console.log('nextProps = ',nextProps);
+		if(nextProps.currentClinic.index){
+			scroller.scrollTo(nextProps.currentClinic.index, {
+													  duration: 1500,
+													  delay: 100,
+													  smooth: true,
+													});
+		}				    
 	}
 
 	render(){
@@ -48,19 +66,33 @@ class ClinicList extends Component{
 		    <section className="divider parallax layer-overlay overlay-white clinic-list" 
 		    	style={{'backgroundImage':'url(images/bg/bg1.jpg)', width:'100%', height: '100%'}}		    	
 		    	>
-		      <div className="container pb-80">
-			      <div className="section-centent">
-						<div className="row">
-				          	<div className="col-md-12">                       
-								{
-									this.props.currentPractitioner.Clinics.map(clinic => {
-										return <ClinicItem key={clinic.clinicId} clinic={clinic}></ClinicItem>
-									})
-								}
-			  				</div>
-			      		</div>      
-			      </div>
-		      </div>
+				<div className="row">
+					<div className="col-md-12">                       		    	
+						<div className="container">
+								<div className="row">
+									<div className="col-md-9">       
+										<Infinite containerHeight={800} elementHeight={40}>
+										{
+											this.props.currentPractitioner.Clinics.map((clinic,index) => {
+											return (   
+												<Element name={index + 1} className="element">
+													<ClinicItem key={clinic.clinicId} index={index} clinic={clinic} onMouseEnter={this.props.mouseEnterClinic} onMouseLeave={this.props.mouseLeaveClinic} ></ClinicItem>
+													<p/>
+        										</Element>
+												)
+											})
+										}
+										</Infinite>									
+									</div>
+									<div className="col-md-3">     						
+										<div style={{position: 'absolute', width: '400px', height: '400px'}}>
+											<AllClinicsOnMap/>
+										</div>    	
+									</div>														
+								</div>      								
+						</div>					
+					</div>
+				</div>	
 		    </section>
 			)
 	}

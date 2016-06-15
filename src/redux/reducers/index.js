@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux';
-import todoReducer from './todoReducer';
-import userReducer from './userReducer';
 import practitionerReducer from './practitionerReducer';
 import currentPractitionerReducer from './currentPractitionerReducer';
 import clinicReducer from './clinicReducer';
+import currentClinicReducer from './currentClinicReducer';
 
 const rootReducer = combineReducers({
 	practitioners: practitionerReducer,
-	currentPractitioner: currentPractitionerReducer
+	currentPractitioner: currentPractitionerReducer,
+	currentClinic: currentClinicReducer
 });
 
 export default rootReducer;

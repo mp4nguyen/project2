@@ -1,48 +1,69 @@
-import React,{Component} from 'react';
-
+import React,{Component,PropTypes} from 'react';
+var classNames = require( 'classnames' ); 
 
 class ClinicItem extends Component{
+  
+  static propTypes = {
+    onMouseEnter: PropTypes.func.isRequired,
+    onMouseLeave: PropTypes.func.isRequired,
+    clinic: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired
+  };
 
-	handleComplete(){
-		console.log('complete');		
-	}
+  _onMouseEnter(){
+    this.props.onMouseEnter(this.props.index + 1,this.props.clinic);
+  }
 
-	handleDelete(){
-		console.log('delete');	
-	}
+  _onMouseLeave(){
+    this.props.onMouseLeave(this.props.index + 1,this.props.clinic);
+  }
 
 	render(){
 
     const address = this.props.clinic.address + ' ' + this.props.clinic.ward+ ' ' + this.props.clinic.suburbDistrict+ ' ' + this.props.clinic.stateProvince;
+
+    var classes = classNames(
+                {
+                    'services-tab': true,
+                    'bg-white-light' : !this.props.clinic.isMouseEnter,
+                    'bg-success': this.props.clinic.isMouseEnter,
+                    'clinic-item': true
+                }
+            );
+
 		return (							
-			<div className="services-tab border-10px bg-white-light clinic-item">
+			<div className={classes} 
+        onMouseEnter={this._onMouseEnter.bind(this)}
+        onMouseLeave={this._onMouseLeave.bind(this)}
+      >
     		<div className="tab-content">
 			    <div className="tab-pane fade in active" id="tab11">
                   <div className="row">
-                    <div className="col-md-5">
+                    <div className="col-md-3">
                       <div className="thumb">
                         <img className="img-fullwidth" src="images/services/1.jpg" alt=""/>
                       </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-9">
                       <div className="service-content">                        
                         <h1 id="clinicName" className="title">{this.props.clinic.clinicName}</h1>
-                        <h3 id="address" className="sub-title mb-0 mt-30">{address}</h3>  
+                        <div className="row">
+                          <div className="col-md-9">
+                            <h3 id="address" className="mb-0 mt-30">{address}</h3>    
+                          </div>
+                          <div className="col-md-3">                          
+                            <a className="pull-right mb-0 mt-30">
+                              <i className="fa fa-map-marker" aria-hidden="true"> Show on map</i> 
+                            </a> 
+                          </div>                                                  
+                        </div>                        
                         <p>test test</p>
                         <div className="row mt-30 mb-20">
                          <div className="col-xs-6">
-                          <ul className="mt-10">
-                            <li className="mb-10"><i className="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Qualified Doctors</li>
-                            <li className="mb-10"><i className="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;24×7 Emergency Services</li>
-                            <li className="mb-10"><i className="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;General Medical</li>
-                          </ul>
+
                          </div>
                          <div className="col-xs-6">
-                          <ul className="mt-10">
-                            <li className="mb-10"><i className="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Feel like Home Services</li>
-                            <li className="mb-10"><i className="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Outdoor Checkup</li>
-                            <li className="mb-10"><i className="fa fa-angle-double-right text-theme-colored font-15"></i>&emsp;Easy and Affordable Billing</li>
-                          </ul>
+
                          </div>
                         </div>
                         <a className="btn btn-lg btn-dark btn-theme-colored" href="#">View Details</a>
