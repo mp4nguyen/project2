@@ -64,14 +64,13 @@ class ClinicList extends Component{
 
 		return (
 		    <section className="divider parallax layer-overlay overlay-white clinic-list" 
-		    	style={{'backgroundImage':'url(images/bg/bg1.jpg)', width:'100%', height: '100%'}}		    	
+		    	
 		    	>
 				<div className="row">
 					<div className="col-md-12">                       		    	
 						<div className="container">
 								<div className="row">
 									<div className="col-md-9">       
-										<Infinite containerHeight={800} elementHeight={40}>
 										{
 											this.props.currentPractitioner.Clinics.map((clinic,index) => {
 											return (   
@@ -81,8 +80,7 @@ class ClinicList extends Component{
         										</Element>
 												)
 											})
-										}
-										</Infinite>									
+										}				
 									</div>
 									<div className="col-md-3">     						
 										<div style={{position: 'absolute', width: '400px', height: '400px'}}>

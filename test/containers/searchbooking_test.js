@@ -55,7 +55,7 @@ describe('SearchBooking with route' , () => {
 
   beforeEach(() => {
 
-    component = renderComponentWithRoute(routes,{},{practitioners:[{'bookingTypeName':'GP',isSelected:true},{'bookingTypeName':'Dentist',isSelected:false}],currentPractitioner:{'bookingTypeName':'GP',isSelected:true,Clinics:[{clinicName:'Clinic 1'},{clinicName:'Clinic 2'}]}});
+    component = renderComponentWithRoute(routes,{},{practitioners:[{'bookingTypeName':'GP',isSelected:true},{'bookingTypeName':'Dentist',isSelected:false}],currentPractitioner:{'bookingTypeName':'GP',isSelected:true,Clinics:[{clinicId:1,clinicName:'clinic 1',latitude:30,longitude:30},{clinicId:2,clinicName:'clinic 2',latitude:30,longitude:30}]}});
   });
 
   it('renders something', () => {

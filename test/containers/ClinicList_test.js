@@ -9,7 +9,7 @@ describe('ClinicList' , () => {
   let component;
   
   beforeEach(() => {
-    component = renderComponent(ClinicList,{},{practitioners:[{'bookingTypeName':'GP',isSelected:true},{'bookingTypeName':'Dentist',isSelected:false}],currentPractitioner:{'bookingTypeName':'GP',isSelected:true,Clinics:[{clinicName:'clinic 1'},{clinicName:'clinic 2'}]}});
+    component = renderComponent(ClinicList,{},{practitioners:[{'bookingTypeName':'GP',isSelected:true},{'bookingTypeName':'Dentist',isSelected:false}],currentPractitioner:{'bookingTypeName':'GP',isSelected:true,Clinics:[{clinicId:1,clinicName:'clinic 1',latitude:30,longitude:30},{clinicId:2,clinicName:'clinic 2',latitude:30,longitude:30}]}});
   });
 
   it('renders something', () => {
@@ -29,7 +29,6 @@ describe('ClinicList' , () => {
   });
 
   it('has google map to display all current clinics',() => {
-    console.log(component.find('.all-clinics-on-map'));
     expect(component.find('.all-clinics-on-map')).to.exist;
   });
 });
