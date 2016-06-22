@@ -1,5 +1,5 @@
 
-import {LOAD_CLINICS_FROM_SERVER,MOUSE_ENTER_CLINIC,MOUSE_LEAVE_CLINIC,SELECT_TIME,INITIAL_TIME,CLOSE_DATEPICKER_DIALOG} from '../actions/types';
+import {LOAD_CLINICS_FROM_SERVER,MOUSE_ENTER_CLINIC,MOUSE_LEAVE_CLINIC,SELECT_TIME,INITIAL_TIME,CLOSE_DATEPICKER_DIALOG,TEST_ACTION1} from '../actions/types';
 import moment from 'moment';
 
 var clone = require('clone');
@@ -17,7 +17,19 @@ let clinicReducer = function(clinics = [], action) {
 
   switch (action.type) {
   	case LOAD_CLINICS_FROM_SERVER:      
-  		return action.payload.clinics;
+      //when search button pressing; the app will connect to the server to get the data and set the date = today
+      console.log('clinicReducer = ',action);
+      let newObject5 = clone(action.payload.data.clinics);
+            
+      for(var i in newObject5){
+        var clinicObject = newObject5[i];
+        //run through all rosters and find the roster day is today
+        if(clinicObject.Rosters[0]){
+          clinicObject.currentCalendars = clinicObject.Rosters[0].Calendars;    
+        }            
+      }
+      return newObject5;                      
+  		//return action.payload.clinics;
     case MOUSE_ENTER_CLINIC:
       let newObject = clone(clinics);
       newObject[action.clinicIndex-1].isMouseEnter = true;
@@ -65,32 +77,7 @@ let clinicReducer = function(clinics = [], action) {
         }
       }      
       return newObject4;            
-    case CLOSE_DATEPICKER_DIALOG:
-      console.log('clinicReducer.CLOSE_DATEPICKER_DIALOG = ',action);
-      let ptoday3 = moment().format('DD/MM/YYYY');
-      let ptomorrow3 = moment().add(1,'d').format('DD/MM/YYYY');
 
-      if(action.date == ptoday3 || action.date == ptomorrow3){
-        //if selectDate is today or tomorrow => no need to connect to server to get the data; just using the current data
-        let newObject5 = clone(clinics);
-        console.log('ptoday = ',ptoday3,ptomorrow3);
-
-        for(var i in newObject5){
-          var clinicObject = newObject5[i];
-          //run through all rosters and find the roster day is today
-          for(var j in clinicObject.Rosters){
-            if(clinicObject.Rosters[j].calendarDateInStr == action.date){
-              clinicObject.currentCalendars = clinicObject.Rosters[j].Calendars;  
-            }
-          }
-        }      
-        return newObject5;                    
-      }else{
-        //otherwise, have to connect to the server to get the data of the seleted date
-
-      }
-
-      return clinics; 
     default: 
       return clinics;
   }

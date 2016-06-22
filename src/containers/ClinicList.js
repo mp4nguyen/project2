@@ -26,6 +26,10 @@ import AllClinicsOnMap from '../containers/AllClinicsOnMap';
 
 class ClinicList extends Component{
 
+	static contextTypes = {
+		router: React.PropTypes.object
+	};
+
 	constructor(props,context){
 		super(props,context);
 
@@ -33,13 +37,13 @@ class ClinicList extends Component{
 
 
 
-  close() {
-    this.props.closeDatePickerDialog();
-  }
+	close() {
+		this.props.closeDatePickerDialog();
+	}
 
-  open() {
-  	this.props.openDatePickerDialog();   
-  }
+	open() {
+		this.props.openDatePickerDialog();   
+	}
 
 	componentWillReceiveProps(nextProps) {
 
@@ -77,16 +81,22 @@ class ClinicList extends Component{
 
 		return (
 		    <section className="clinic-list">
-		    	<DatePickerDialog datePickerDialog={this.props.datePickerDialog} closeDatePickerDialog={this.props.closeDatePickerDialog} datePickerOnSelect={this.props.datePickerOnSelect}/>
+		    	<DatePickerDialog datePickerDialog={this.props.datePickerDialog} closeDatePickerDialog={this.props.closeDatePickerDialog} datePickerOnSelect={this.props.datePickerOnSelect} currentPractitioner={this.props.currentPractitioner}/>
+
 				<AutoAffix viewportOffsetTop={70} container={this}>
-					<div className="navbar navbar-default navbar-static-top gray-light">
-		              <div className="container">
-		                <nav id="menuzord" className="menuzord blue gray-light">
-		                  <SelectPractitionerInClinicList practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>
-		                  <SelectTimeAndLocationInClinicList  times={this.props.timeSelection.times} selectTime={this.props.selectTime} openDatePickerDialog={this.props.openDatePickerDialog}/>
-		                </nav>
-		              </div>					
-					</div> 
+					<div className="navbar-static-top">
+			    		<div className="container gray-light">
+							<h3>{this.props.timeSelection.currentDateSelection}</h3>
+						</div>										
+						<div className="navbar navbar-default navbar-static-top">
+			              <div className="container">
+			                <nav id="menuzord" className="menuzord blue">
+			                  <SelectPractitionerInClinicList practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>
+			                  <SelectTimeAndLocationInClinicList  timeSelection={this.props.timeSelection} selectTime={this.props.selectTime} openDatePickerDialog={this.props.openDatePickerDialog}/>
+			                </nav>
+			              </div>					
+						</div> 					
+					</div>
 				</AutoAffix>		    
 				<div className="row">
 					<div className="col-md-12">                       		    	
@@ -118,32 +128,6 @@ class ClinicList extends Component{
 	}
 }
 
-/*				        <Modal show={this.props.datePickerDialog.showDialog} onHide={this.close.bind(this)}>
-				          <Modal.Header closeButton>
-				            <Modal.Title>Modal heading</Modal.Title>
-				          </Modal.Header>
-				          <Modal.Body>
-				            <h4>Text in a modal</h4>
-				            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-				            <h4>Popover in a modal</h4>
-				            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
-
-				            <h4>Tooltips in a modal</h4>
-				            <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
-
-				            <hr />
-
-				            <h4>Overflowing text to show scroll behavior</h4>
-							<InfiniteCalendar
-							   min={'2016-04-21'}
-							   minDate={'2016-06-22'}
-							/>
-				          </Modal.Body>
-				          <Modal.Footer>
-				            <Button onClick={this.close.bind(this)}>Close</Button>
-				          </Modal.Footer>
-				        </Modal>*/
 
 function mapStateToProps(state){
 	return state;

@@ -1,6 +1,7 @@
 import  * as types from './types';
-
+import store from '../store';
 import axios from 'axios';
+import moment from 'moment';
 
 export function	loadPractitionerFromServer(){
 	const request = axios.get('https://0.0.0.0:3001/api/BBookingTypes');
@@ -64,7 +65,6 @@ export function	initialTime(pBookingTypeId){
 		type: types.INITIAL_TIME,
 		payload: request
 	}	
-
 };
 
 export function	selectTime(time){
@@ -74,7 +74,7 @@ export function	selectTime(time){
 	}
 };
 
-export function	datePickerOnSelect(date){
+export function	datePickerOnSelect(date){	
 	return {
 		type: types.DATEPICKER_ON_SELECT,
 		date
@@ -87,11 +87,22 @@ export function	openDatePickerDialog(){
 	}
 };
 
-export function	closeDatePickerDialog(date){
-	return {
-		type: types.CLOSE_DATEPICKER_DIALOG,
-		date
-	}
+export function	closeDatePickerDialog(date,pBookingTypeId){
+      console.log('closeDatePickerDialog = ',date,pBookingTypeId);
+      let ptoday = moment().format('DD/MM/YYYY');
+      let ptomorrow = moment().add(1,'d').format('DD/MM/YYYY');
+
+      if(date == ptoday){
+		return [{type: types.CLOSE_DATEPICKER_DIALOG,date},{type :types.SELECT_TIME, time: {name:'Today'}}]      	
+      }else if(date == ptomorrow){
+		return [{type: types.CLOSE_DATEPICKER_DIALOG,date},{type :types.SELECT_TIME, time: {name:'Tomorrow'}}]      	
+      }else{
+        //otherwise, have to connect to the server to get the data of the seleted date
+        const request = axios.post('https://localhost:3001/api/BClinics/filterClinic',{bookingTypeId:pBookingTypeId,time:date,long:1,lat:1});	
+		return [{type: types.CLOSE_DATEPICKER_DIALOG,date},{type: types.LOAD_CLINICS_FROM_SERVER,payload: request}]      	
+      }
+
+      return {type: types.CLOSE_DATEPICKER_DIALOG,date}
 };
 
 

@@ -11,12 +11,13 @@ class DatePickerDialog extends Component{
   static propTypes = {
     datePickerDialog: PropTypes.object.isRequired,
     closeDatePickerDialog: PropTypes.func.isRequired,
-    datePickerOnSelect: PropTypes.func.isRequired
+    datePickerOnSelect: PropTypes.func.isRequired,
+    currentPractitioner: PropTypes.object.isRequired
   };
 
   _close(date) {
     console.log('close dialog = ',date);
-    this.props.closeDatePickerDialog(date);
+    this.props.closeDatePickerDialog(date,this.props.currentPractitioner.bookingTypeId);
   }
 
 	render(){    		

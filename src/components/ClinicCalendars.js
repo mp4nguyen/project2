@@ -4,12 +4,17 @@ var classNames = require( 'classnames' );
 
 class ClinicCalendars extends Component{
   
+  static contextTypes = {
+    router: React.PropTypes.object
+  };
+
   static propTypes = {
     calendars: PropTypes.array.isRequired
   };
 
   _onClick(cal){
     console.log('clicked on clinical calendar...',cal);
+    this.context.router.push('/MakeABooking');
   }
 
 	render(){
