@@ -20,7 +20,6 @@ class SearchBooking extends Component{
 
 
 	handleChange(event){
-		console.log('change detected',event.target.value);
 		this.setState({
 			inputText: event.target.value
 		});
@@ -28,10 +27,9 @@ class SearchBooking extends Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-		console.log('submit clicked.');
-		//this.props.actions.loadClinicsFromServer();
-		this.context.router.push('/Clinics');
-		//this.props.addTodo(this.state.inputText);
+		//this.props.loadClinicsFromServer(this.props.currentPractitioner.bookingTypeId);
+		this.props.initialTime(this.props.currentPractitioner.bookingTypeId);
+		this.context.router.push('/Clinics');		
 	}
 
 	render(){
@@ -51,7 +49,7 @@ class SearchBooking extends Component{
 		};
 
 		return (
-	<section id="home" className="divider parallax" 
+	<section id="home" className="" 
     	style={{'backgroundImage':'url(images/bg/bg3.jpg)', width:'100%', height: '700px'}}    	
     	>    	    	
 		<div className="display-table">

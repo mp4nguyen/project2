@@ -1,4 +1,6 @@
 import React,{Component,PropTypes} from 'react';
+import ClinicCalendars from './ClinicCalendars';
+
 var classNames = require( 'classnames' ); 
 
 class ClinicItem extends Component{
@@ -11,20 +13,25 @@ class ClinicItem extends Component{
   };
 
   _onMouseEnter(){
-    this.props.onMouseEnter(this.props.index + 1,this.props.clinic);
+    //this.props.onMouseEnter(this.props.index + 1,this.props.clinic);
   }
 
   _onMouseLeave(){
-    this.props.onMouseLeave(this.props.index + 1,this.props.clinic);
+    //this.props.onMouseLeave(this.props.index + 1,this.props.clinic);
   }
 
 	render(){
 
     const address = this.props.clinic.address + ' ' + this.props.clinic.ward+ ' ' + this.props.clinic.suburbDistrict+ ' ' + this.props.clinic.stateProvince;
+    var calendars = this.props.clinic.currentCalendars;
 
+/*    if(this.props.clinic.Rosters[0]){
+      calendars = this.props.clinic.Rosters[0].Calendars;  
+    }*/
+    //'services-tab': true,
     var classes = classNames(
                 {
-                    'services-tab': true,
+                    
                     'bg-white-light' : !this.props.clinic.isMouseEnter,
                     'bg-success': this.props.clinic.isMouseEnter,
                     'clinic-item': true
@@ -66,9 +73,13 @@ class ClinicItem extends Component{
 
                          </div>
                         </div>
-                        <a className="btn btn-lg btn-dark btn-theme-colored" href="#">View Details</a>
+                        
+                        
                       </div>
                     </div>
+                  </div>
+                  <div className="row">
+                    <ClinicCalendars calendars={calendars}/>
                   </div>
                 </div>
         	</div>

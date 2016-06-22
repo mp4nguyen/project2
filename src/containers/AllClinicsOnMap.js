@@ -73,7 +73,7 @@ class AllClinicsOnMap extends Component {
 }
 
 function mapStateToProps(state){
-  return {clinics: state.currentPractitioner.Clinics};
+  return {clinics: state.clinics};
 }
 
 
