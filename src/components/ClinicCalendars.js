@@ -9,11 +9,14 @@ class ClinicCalendars extends Component{
   };
 
   static propTypes = {
+    setCalendarForCurrentBooking: PropTypes.func.isRequired,
+    clinic: PropTypes.object.isRequired,
     calendars: PropTypes.array.isRequired
   };
 
   _onClick(cal){
     console.log('clicked on clinical calendar...',cal);
+    this.props.setCalendarForCurrentBooking(cal,this.props.clinic);
     this.context.router.push('/MakeABooking');
   }
 

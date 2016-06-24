@@ -107,7 +107,7 @@ class ClinicList extends Component{
 											this.props.clinics.map((clinic,index) => {
 											return (   
 												<Element name={index + 1} className="element">
-													<ClinicItem key={clinic.clinicId} index={index} clinic={clinic} onMouseEnter={this.props.mouseEnterClinic} onMouseLeave={this.props.mouseLeaveClinic} ></ClinicItem>
+													<ClinicItem key={clinic.clinicId} index={index} clinic={clinic} onMouseEnter={this.props.mouseEnterClinic} onMouseLeave={this.props.mouseLeaveClinic} setCalendarForCurrentBooking={this.props.setCalendarForCurrentBooking}></ClinicItem>
 													<p/>
         										</Element>
 												)

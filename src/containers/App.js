@@ -99,9 +99,13 @@ class App extends Component {
                 </div>
               </div>
             </div>                        
-          </header>                                
+          </header>                       
+
+
+
           <AutoAffix viewportOffsetTop={0} container={this}>
-            <div className="navbar-static-top header-nav-wrapper bg-light navbar navbar-default">
+          
+            <div className="header-nav-wrapper navbar-scrolltofixed bg-light navbar-static-top">
               <div className="container">
                 <nav id="menuzord" className="menuzord blue bg-light">
                   <ul className="menuzord-menu">
@@ -120,7 +124,9 @@ class App extends Component {
                 </nav>
               </div>
             </div>
+          
           </AutoAffix>
+
           <div className="main-content">        
             {this.props.children}  
           </div> 

@@ -8,6 +8,7 @@ class ClinicItem extends Component{
   static propTypes = {
     onMouseEnter: PropTypes.func.isRequired,
     onMouseLeave: PropTypes.func.isRequired,
+    setCalendarForCurrentBooking: PropTypes.func.isRequired,
     clinic: PropTypes.object.isRequired,
     index: PropTypes.number.isRequired
   };
@@ -79,7 +80,7 @@ class ClinicItem extends Component{
                     </div>
                   </div>
                   <div className="row">
-                    <ClinicCalendars calendars={calendars}/>
+                    <ClinicCalendars clinic={this.props.clinic} calendars={calendars} setCalendarForCurrentBooking={this.props.setCalendarForCurrentBooking}/>
                   </div>
                 </div>
         	</div>

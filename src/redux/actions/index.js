@@ -105,4 +105,29 @@ export function	closeDatePickerDialog(date,pBookingTypeId){
       return {type: types.CLOSE_DATEPICKER_DIALOG,date}
 };
 
+export function	setCalendarForCurrentBooking(calendar,clinic){
+	return {
+		type: types.CURRENT_BOOKING_SET_CALENDAR,
+		calendar,
+		clinic
+	}
+};
+
+export function	setPatientForCurrentBooking(patient){
+	return {
+		type: types.CURRENT_BOOKING_SET_PATIENT,
+		patient
+	}
+};
+
+export function	submitCurrentBooking(){
+	return {
+		type: types.CURRENT_BOOKING_SUBMIT
+	}
+};
+
+
+
+
+
 

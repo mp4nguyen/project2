@@ -5,6 +5,7 @@ import clinicReducer from './clinicReducer';
 import currentClinicReducer from './currentClinicReducer';
 import timeReducer from './timeReducer';
 import datePickerDialogReducer from './datePickerDialogReducer';
+import currentBookingReducer from './currentBookingReducer';
 
 const rootReducer = combineReducers({
 	clinics: clinicReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
 	timeSelection: timeReducer, 
 	currentPractitioner: currentPractitionerReducer,
 	currentClinic: currentClinicReducer,
-	datePickerDialog: datePickerDialogReducer
+	datePickerDialog: datePickerDialogReducer,
+	currentBooking : currentBookingReducer
 });
 
 export default rootReducer;
