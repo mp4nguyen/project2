@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Building medical booking",
   "scripts": {
-    "serve": "nodemon server.js --ignore src",
+    "serve": "nodemon server.js --ignore",
     "test": "mocha --compilers js:babel-core/register --require ./test/global.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
@@ -56,6 +56,7 @@
     "redux-mock-store": "^1.1.0",
     "redux-multi": "^0.1.12",
     "redux-promise": "^0.5.3",
+    "redux-saga": "^0.10.5",
     "redux-thunk": "^2.1.0",
     "sass-lint": "^1.8.0",
     "sass-loader": "^3.2.1",

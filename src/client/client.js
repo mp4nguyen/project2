@@ -31,13 +31,19 @@ let initialState = {
 let store = configureStore(initialState);
 
 
+store.subscribe(function fetcher() {
+  const state = store.getState();
+  console.log('state = ',state,'  =  ',state.navigation);
+  //store.dispatch({type: "ACTION1"});
+})
+
 render(
 	<MuiThemeProvider muiTheme={muiTheme}>
 		<Provider store = {store}>
 			<Router history={browserHistory} routes={routes}>
 			</Router>
-		</Provider>		
-	</MuiThemeProvider> 
+		</Provider>
+	</MuiThemeProvider>
 	,
 	document.getElementById('app')
 );

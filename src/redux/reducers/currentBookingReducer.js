@@ -1,7 +1,7 @@
-
+var clone = require('clone');
 import {CURRENT_BOOKING_SET_CALENDAR,CURRENT_BOOKING_SET_PATIENT,CURRENT_BOOKING_SUBMIT} from '../actions/types';
 
-let currentBookingReducer = function(currentBooking = {patientFirstName:{},patientLastName:{},patientDOB:{},patientReason:{},patientMobile:{},patientEmail:{}}, action) {
+let currentBookingReducer = function(currentBooking = {}, action) {
   switch (action.type) {
     case CURRENT_BOOKING_SET_CALENDAR:
     	return Object.assign({},currentBooking,{
@@ -21,7 +21,7 @@ let currentBookingReducer = function(currentBooking = {patientFirstName:{},patie
                                                 timeInterval: action.calendar.timeInterval,
                                                 rosterId: action.calendar.rosterId,
                                                 clinicName: action.clinic.clinicName,
-                                                address: action.clinic.address, 
+                                                address: action.clinic.address,
                                                 ward: action.clinic.ward,
                                                 suburbDistrict: action.clinic.suburbDistrict,
                                                 stateProvince: action.clinic.stateProvince,
@@ -31,12 +31,35 @@ let currentBookingReducer = function(currentBooking = {patientFirstName:{},patie
     case CURRENT_BOOKING_SET_PATIENT:
         return Object.assign({},currentBooking,action.patient);
     case CURRENT_BOOKING_SUBMIT:
-        console.log(' currentBooking = ',currentBooking);
+        let newObject = clone(currentBooking);
+        if(!newObject.patientFirstName.value){
+            newObject.patientFirstName.errorText = "First name is required"
+        }
+
+        if(!newObject.patientLastName.value){
+            newObject.patientLastName.errorText = "Last name is required"
+        }
+
+        if(!newObject.patientDOB.value){
+            newObject.patientDOB.errorText = "DOB is required"
+        }
+
+        if(!newObject.patientMobile.value){
+            newObject.patientMobile.errorText = "Mobile phone is required"
+        }
+
+        if(!newObject.patientEmail.value){
+            newObject.patientEmail.errorText = "Email is required"
+        }
+
+        return newObject;
+    case "ACTION1":
+        console.log("action 1 is triggered !");
         return currentBooking;
-    default: 
+    default:
       return currentBooking;
 
-    return currentBooking;  
+    return currentBooking;
   }
 };
 

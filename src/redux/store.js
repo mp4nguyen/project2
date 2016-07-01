@@ -4,12 +4,15 @@ import rootReducer from './reducers/index';
 import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 import multi from 'redux-multi';
+import sagaMiddleware from 'redux-saga';
 
 // Todo: add middleware
 let finalCreateStore = compose(
 	applyMiddleware(ReduxPromise,thunk,multi,logger())
 )(createStore);
 
-export default function configureStore(initialState = {practitioners:[],currentPractitioner:{}}){
+let configureStore = function(initialState = {practitioners:[],currentPractitioner:{}}){
 	return finalCreateStore(rootReducer,initialState);
 }
+
+export default configureStore;
