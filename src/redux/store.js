@@ -5,10 +5,10 @@ import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 import multi from 'redux-multi';
 import sagaMiddleware from 'redux-saga';
-
+import socketIOMiddleware from './middlewares/socketIOMiddleware'
 // Todo: add middleware
 let finalCreateStore = compose(
-	applyMiddleware(ReduxPromise,thunk,multi,logger())
+	applyMiddleware(ReduxPromise,thunk,multi,logger(),socketIOMiddleware)
 )(createStore);
 
 let configureStore = function(initialState = {practitioners:[],currentPractitioner:{}}){

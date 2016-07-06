@@ -31,27 +31,8 @@ let currentBookingReducer = function(currentBooking = {}, action) {
     case CURRENT_BOOKING_SET_PATIENT:
         return Object.assign({},currentBooking,action.patient);
     case CURRENT_BOOKING_SUBMIT:
+        console.log('action =',action);
         let newObject = clone(currentBooking);
-        if(!newObject.patientFirstName.value){
-            newObject.patientFirstName.errorText = "First name is required"
-        }
-
-        if(!newObject.patientLastName.value){
-            newObject.patientLastName.errorText = "Last name is required"
-        }
-
-        if(!newObject.patientDOB.value){
-            newObject.patientDOB.errorText = "DOB is required"
-        }
-
-        if(!newObject.patientMobile.value){
-            newObject.patientMobile.errorText = "Mobile phone is required"
-        }
-
-        if(!newObject.patientEmail.value){
-            newObject.patientEmail.errorText = "Email is required"
-        }
-
         return newObject;
     case "ACTION1":
         console.log("action 1 is triggered !");

@@ -43,7 +43,7 @@ class MakeABooking extends Component{
 	_submit(){
 		//this.props.loadClinicsFromServer(this.props.currentPractitioner.bookingTypeId);
     console.log('Submit....');
-		this.props.submitCurrentBooking();
+		this.props.submitCurrentBooking(this.props.currentBooking);
 		//this.context.router.push('/Clinics');
 	}
 
@@ -68,7 +68,7 @@ class MakeABooking extends Component{
                   <div className="line-bottom mb-30"></div>
 									<Form
 										update={this.props.setPatientForCurrentBooking}
-										onSubmit={data => console.log(data)}
+										onSubmit={this._submit.bind(this)}
 										value={this.props.currentBooking}
 									>
 										<Text
