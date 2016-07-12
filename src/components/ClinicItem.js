@@ -1,10 +1,10 @@
 import React,{Component,PropTypes} from 'react';
 import ClinicCalendars from './ClinicCalendars';
 
-var classNames = require( 'classnames' ); 
+var classNames = require( 'classnames' );
 
 class ClinicItem extends Component{
-  
+
   static propTypes = {
     onMouseEnter: PropTypes.func.isRequired,
     onMouseLeave: PropTypes.func.isRequired,
@@ -27,64 +27,41 @@ class ClinicItem extends Component{
     var calendars = this.props.clinic.currentCalendars;
 
 /*    if(this.props.clinic.Rosters[0]){
-      calendars = this.props.clinic.Rosters[0].Calendars;  
+      calendars = this.props.clinic.Rosters[0].Calendars;
     }*/
     //'services-tab': true,
     var classes = classNames(
                 {
-                    
+
                     'bg-white-light' : !this.props.clinic.isMouseEnter,
                     'bg-success': this.props.clinic.isMouseEnter,
                     'clinic-item': true
                 }
             );
 
-		return (							
-			<div className={classes} 
+
+
+		return (
+			<div className={classes}
         onMouseEnter={this._onMouseEnter.bind(this)}
         onMouseLeave={this._onMouseLeave.bind(this)}
       >
-    		<div className="tab-content">
-			    <div className="tab-pane fade in active" id="tab11">
-                  <div className="row">
-                    <div className="col-md-3">
-                      <div className="thumb">
-                        <img className="img-fullwidth" src="images/services/1.jpg" alt=""/>
-                      </div>
-                    </div>
-                    <div className="col-md-9">
-                      <div className="service-content">                        
-                        <h1 id="clinicName" className="title">{this.props.clinic.clinicName}</h1>
-                        <div className="row">
-                          <div className="col-md-9">
-                            <h3 id="address" className="mb-0 mt-30">{address}</h3>    
-                          </div>
-                          <div className="col-md-3">                          
-                            <a className="pull-right mb-0 mt-30">
-                              <i className="fa fa-map-marker" aria-hidden="true"> Show on map</i> 
-                            </a> 
-                          </div>                                                  
-                        </div>                        
-                        <p>test test</p>
-                        <div className="row mt-30 mb-20">
-                         <div className="col-xs-6">
-
-                         </div>
-                         <div className="col-xs-6">
-
-                         </div>
-                        </div>
-                        
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <ClinicCalendars clinic={this.props.clinic} calendars={calendars} setCalendarForCurrentBooking={this.props.setCalendarForCurrentBooking}/>
-                  </div>
-                </div>
-        	</div>
-        	</div>
+        <article className="post clearfix mb-50 pb-30">
+          <div className="entry-header">
+            <h5 className="entry-title mt-0 pt-0"><a href="#">{this.props.clinic.clinicName}</a></h5>
+            <ul className="list-inline font-12 mb-20 mt-10">
+              <li>{address} <a href="#" className="text-theme-colored">Admin |</a></li>
+              <li><span className="text-theme-colored">SEP 12,15</span></li>
+            </ul>
+          </div>
+          <div className="entry-content">
+            <p className="mb-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sit nobis magni incidunt eos quasi et excepturi, animi omnis velit, deserunt ratione eum dolorem ducimus ab quidem saepe, natus earum facilis voluptate molestias quos nisi. Beatae in saepe velit nisi sapiente ullam nihil. Laboriosam repellat deleniti voluptate maiores consectetur debitis <a href="#">[...]</a></p>
+            <div className="row">
+              <ClinicCalendars clinic={this.props.clinic} calendars={calendars} setCalendarForCurrentBooking={this.props.setCalendarForCurrentBooking}/>
+            </div>
+          </div>
+        </article>
+      </div>
 				)
 	}
 }

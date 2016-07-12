@@ -9,7 +9,7 @@ import SelectPractitionerInClinicList from '../components/SelectPractitionerInCl
 import SelectTimeAndLocationInClinicList from '../components/SelectTimeAndLocationInClinicList';
 import DatePickerDialog from '../components/DatePickerDialog';
 
-var Scroll  = require('react-scroll'); 
+var Scroll  = require('react-scroll');
 var Infinite = require('react-infinite');
 
 var Link       = Scroll.Link;
@@ -42,7 +42,7 @@ class ClinicList extends Component{
 	}
 
 	open() {
-		this.props.openDatePickerDialog();   
+		this.props.openDatePickerDialog();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -57,7 +57,7 @@ class ClinicList extends Component{
 													  delay: 100,
 													  smooth: true,
 													});
-		}				    
+		}
 	}
 
 	render(){
@@ -79,50 +79,130 @@ class ClinicList extends Component{
 		let popover = <Popover title="popover">very popover. such engagement</Popover>;
     	let tooltip = <Tooltip>wow.</Tooltip>;
 
-		return (
-		    <section className="clinic-list">
-		    	<DatePickerDialog datePickerDialog={this.props.datePickerDialog} closeDatePickerDialog={this.props.closeDatePickerDialog} datePickerOnSelect={this.props.datePickerOnSelect} currentPractitioner={this.props.currentPractitioner}/>
+	/*		<DatePickerDialog datePickerDialog={this.props.datePickerDialog} closeDatePickerDialog={this.props.closeDatePickerDialog} datePickerOnSelect={this.props.datePickerOnSelect} currentPractitioner={this.props.currentPractitioner}/>
 
-				<AutoAffix viewportOffsetTop={70} container={this}>
-					<div className="navbar-static-top">
-			    		<div className="container gray-light">
-							<h3>{this.props.timeSelection.currentDateSelection}</h3>
-						</div>										
-						<div className="navbar navbar-default navbar-static-top">
-			              <div className="container">
-			                <nav id="menuzord" className="menuzord blue">
-			                  <SelectPractitionerInClinicList practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>
-			                  <SelectTimeAndLocationInClinicList  timeSelection={this.props.timeSelection} selectTime={this.props.selectTime} openDatePickerDialog={this.props.openDatePickerDialog}/>
-			                </nav>
-			              </div>					
-						</div> 					
-					</div>
-				</AutoAffix>		    
-				<div className="row">
-					<div className="col-md-12">                       		    	
-						<div className="container">
-								<div className="row">
-									<div className="col-md-9">       
-										{
-											this.props.clinics.map((clinic,index) => {
-											return (   
-												<Element name={index + 1} className="element">
-													<ClinicItem key={clinic.clinicId} index={index} clinic={clinic} onMouseEnter={this.props.mouseEnterClinic} onMouseLeave={this.props.mouseLeaveClinic} setCalendarForCurrentBooking={this.props.setCalendarForCurrentBooking}></ClinicItem>
-													<p/>
-        										</Element>
-												)
-											})
-										}				
-									</div>
-									<div className="col-md-3">     						
-										<div style={{position: 'absolute', width: '400px', height: '400px'}}>
-											<AllClinicsOnMap/>
-										</div>    	
-									</div>														
-								</div>      								
-						</div>					
-					</div>
+		<AutoAffix viewportOffsetTop={70} container={this}>
+			<div className="navbar-static-top">
+					<div className="container gray-light">
+					<h3>{this.props.timeSelection.currentDateSelection}</h3>
 				</div>
+				<div className="navbar navbar-default navbar-static-top">
+								<div className="container">
+									<nav id="menuzord" className="menuzord blue">
+										<SelectPractitionerInClinicList practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>
+										<SelectTimeAndLocationInClinicList  timeSelection={this.props.timeSelection} selectTime={this.props.selectTime} openDatePickerDialog={this.props.openDatePickerDialog}/>
+									</nav>
+								</div>
+				</div>
+			</div>
+		</AutoAffix>
+
+		<div className="col-md-3">
+			<div style={{position: 'absolute', width: '400px', height: '400px'}}>
+				<AllClinicsOnMap/>
+			</div>
+		</div>
+
+
+
+		*/
+
+		return (
+		    <section>
+					<DatePickerDialog datePickerDialog={this.props.datePickerDialog} closeDatePickerDialog={this.props.closeDatePickerDialog} datePickerOnSelect={this.props.datePickerOnSelect} currentPractitioner={this.props.currentPractitioner}/>
+		      <div className="container">
+		        <div className="row">
+		          <div className="col-sm-12 col-md-3">
+		            <div className="sidebar sidebar-left mt-sm-30">
+		              <div className="widget">
+		                <h5 className="widget-title line-bottom">Archives</h5>
+										<SelectPractitionerInClinicList practitioners={this.props.practitioners} selectPractitioner={this.props.selectPractitioner}/>
+										<SelectTimeAndLocationInClinicList  timeSelection={this.props.timeSelection} selectTime={this.props.selectTime} openDatePickerDialog={this.props.openDatePickerDialog}/>
+		              </div>
+		              <div className="widget">
+		                <h5 className="widget-title line-bottom">Twitter Feed</h5>
+		                <div className="twitter-feed list-border clearfix" data-username="Envato"></div>
+		              </div>
+		            </div>
+		          </div>
+		          <div className="col-md-6">
+		            <div className="blog-posts">
+		              <div className="col-md-12">
+		                <div className="row list-dashed">
+											{
+												this.props.clinics.map((clinic,index) => {
+												return (
+														<ClinicItem key={clinic.clinicId} index={index} clinic={clinic} onMouseEnter={this.props.mouseEnterClinic} onMouseLeave={this.props.mouseLeaveClinic} setCalendarForCurrentBooking={this.props.setCalendarForCurrentBooking}></ClinicItem>
+													)
+												})
+											}
+		                  <article className="post clearfix mb-50 pb-30">
+		                    <div className="entry-header">
+		                      <h5 className="entry-title mt-0 pt-0"><a href="#">Text Post</a></h5>
+		                      <ul className="list-inline font-12 mb-20 mt-10">
+		                        <li>posted by <a href="#" className="text-theme-colored">Admin |</a></li>
+		                        <li><span className="text-theme-colored">SEP 12,15</span></li>
+		                      </ul>
+		                    </div>
+		                    <div className="entry-content">
+		                      <p className="mb-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sit nobis magni incidunt eos quasi et excepturi, animi omnis velit, deserunt ratione eum dolorem ducimus ab quidem saepe, natus earum facilis voluptate molestias quos nisi. Beatae in saepe velit nisi sapiente ullam nihil. Laboriosam repellat deleniti voluptate maiores consectetur debitis <a href="#">[...]</a></p>
+		                      <ul className="list-inline like-comment pull-left font-12">
+		                        <li><i className="pe-7s-comment"></i>36</li>
+		                        <li><i className="pe-7s-like2"></i>125</li>
+		                      </ul>
+		                      <a className="pull-right text-gray font-13" href="#"><i className="fa fa-angle-double-right text-theme-colored"></i> Read more</a>
+		                    </div>
+		                  </article>
+
+		                </div>
+		              </div>
+		              <div className="col-md-12">
+		                <nav>
+		                  <ul className="pagination theme-colored">
+		                    <li> <a aria-label="Previous" href="#"> <span aria-hidden="true">«</span> </a> </li>
+		                    <li className="active"><a href="#">1</a></li>
+		                    <li><a href="#">2</a></li>
+		                    <li><a href="#">3</a></li>
+		                    <li><a href="#">4</a></li>
+		                    <li><a href="#">5</a></li>
+		                    <li><a href="#">...</a></li>
+		                    <li> <a aria-label="Next" href="#"> <span aria-hidden="true">»</span> </a> </li>
+		                  </ul>
+		                </nav>
+		              </div>
+		            </div>
+		          </div>
+		          <div className="col-sm-12 col-md-3">
+		            <div className="sidebar sidebar-right mt-sm-30">
+		              <div className="widget">
+		                <h5 className="widget-title line-bottom">Search box</h5>
+		                <div className="search-form">
+		                  <form>
+		                    <div className="input-group">
+		                      <input type="text" placeholder="Click to Search" className="form-control search-input"/>
+		                      <span className="input-group-btn">
+		                      <button type="submit" className="btn search-button"><i className="fa fa-search"></i></button>
+		                      </span>
+		                    </div>
+		                  </form>
+		                </div>
+		              </div>
+		              <div className="widget">
+		                <h5 className="widget-title line-bottom">Categories</h5>
+		                <div className="categories">
+		                  <ul className="list list-border angle-double-right">
+		                    <li><a href="#">Creative<span>(19)</span></a></li>
+		                    <li><a href="#">Portfolio<span>(21)</span></a></li>
+		                    <li><a href="#">Fitness<span>(15)</span></a></li>
+		                    <li><a href="#">Gym<span>(35)</span></a></li>
+		                    <li><a href="#">Personal<span>(16)</span></a></li>
+		                  </ul>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
 		    </section>
 			)
 	}
@@ -135,5 +215,3 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps,actions)(ClinicList);
-
-

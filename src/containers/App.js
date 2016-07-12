@@ -7,15 +7,14 @@ import {bindActionCreators} from 'redux';
 import { Affix ,AutoAffix} from 'react-overlays';
 import * as actions from '../redux/actions';
 
-
 class App extends Component {
 
   	constructor(props) {
-		  super(props)		
+		  super(props)
     }
 
-    componentWillMount(){    	
-    	this.props.loadPractitionerFromServer();    	
+    componentWillMount(){
+    	this.props.loadPractitionerFromServer();
     }
 
 
@@ -36,9 +35,9 @@ class App extends Component {
 		};
 
 		return (
-      
-        <div id="wrapper">        
-          <header id="header" className="header">            
+
+        <div id="wrapper">
+          <header id="header" className="header">
             <div className="header-top bg-theme-colored sm-text-center">
               <div className="container">
                 <div className="row">
@@ -98,38 +97,32 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-            </div>                        
-          </header>                       
-
-
+            </div>
+          </header>
 
           <AutoAffix viewportOffsetTop={0} container={this}>
-          
             <div className="header-nav-wrapper navbar-scrolltofixed bg-light navbar-static-top">
               <div className="container">
                 <nav id="menuzord" className="menuzord blue bg-light">
                   <ul className="menuzord-menu">
                     <li className="active"><Link to="/">Home</Link>
                     </li>
-                    <li><a>Features</a>
-                    </li>
-                    <li><a>Pages</a>
-                    </li>              
                   </ul>
+
                   <ul className="pull-right flip hidden-sm hidden-xs">
-                    <div className="widget no-border m-0">            
+                    <div className="widget no-border m-0">
                       <a className="btn btn-colored btn-flat btn-theme-colored mt-15" data-toggle="modal" >Log in</a>
                     </div>
                   </ul>
                 </nav>
               </div>
             </div>
-          
+
           </AutoAffix>
 
-          <div className="main-content">        
-            {this.props.children}  
-          </div> 
+          <div className="main-content">
+            {this.props.children}
+          </div>
           <footer id="footer" className="footer pb-0 bg-black-111">
             <div className="container pb-20">
               <div className="row multi-row-clearfix">
@@ -195,7 +188,7 @@ class App extends Component {
             </div>
           </footer>
         </div>
-      
+
 			)
 	}
 }
@@ -211,7 +204,4 @@ function mapDispatchToProps(dispatch){
 	}
 }
 
-export default connect(null,actions)(App);
-
-
-
+export default connect(mapStateToProps,actions)(App);
